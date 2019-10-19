@@ -72,8 +72,6 @@ public class CloudController : MonoBehaviour
         else if (SceneManager.GetActiveScene().name == "Level2") 
         {
             //will swap the horizontal and vertical speeds so they have each other's values or else the vertical will be too fast
-            //horizontalSpeed = Random.Range(verticalSpeedRange.min, verticalSpeedRange.max);
-            //verticalSpeed = Random.Range(horizontalSpeedRange.min, horizontalSpeedRange.max);
 
             horizontalSpeed = Random.Range(verticalSpeedRange.min, verticalSpeedRange.max);
             verticalSpeed = Random.Range(horizontalSpeedRange.min, horizontalSpeedRange.max);

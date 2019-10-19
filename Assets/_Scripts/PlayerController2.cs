@@ -5,6 +5,7 @@ using Util;
 /// <summary>
 /// Victoria Liu
 /// midterm
+/// similar to the other player controller however this is used so the player can move vertically
 /// </summary>
 public class PlayerController2 : MonoBehaviour
 {
@@ -50,9 +51,12 @@ public class PlayerController2 : MonoBehaviour
         transform.position = newPosition;
     }
 
+    /// <summary>
+    /// checking if the player is inbetween the top and bottom boundary
+    /// </summary>
     public void CheckBounds()
     {
-        // check top boundary
+        // check top boundary 
         if (transform.position.y > boundary.Top)
         {
             transform.position = new Vector2(transform.position.x, boundary.Top);

@@ -5,7 +5,7 @@ using Util;
 /// <summary>
 /// Victoria Liu
 /// midterm test
-/// 
+/// moves the oceans of level 2
 /// </summary>
 public class OceanController2 : MonoBehaviour
 {
@@ -25,7 +25,7 @@ public class OceanController2 : MonoBehaviour
         CheckBounds();
     }
 
-    void Move()
+    void Move() //moves the ocean
     {
         Vector2 newPosition = new Vector2(horizontalSpeed, 0.0f);
         Vector2 currentPosition = transform.position;
@@ -35,11 +35,13 @@ public class OceanController2 : MonoBehaviour
     }
     void Reset()
     {
+        //resets the ocean
         transform.position = new Vector2(resetPosition, 0.0f);
     }
 
     void CheckBounds()
     {
+        //checks if the ocean is at the reset point
         if (transform.position.x <= resetPoint)
         {
             Reset();

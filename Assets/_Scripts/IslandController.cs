@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 /// <summary>
 /// Victoria Liu 
 /// midterm
+/// islandcontroller
 /// </summary>
 
 public class IslandController : MonoBehaviour
@@ -33,6 +34,7 @@ public class IslandController : MonoBehaviour
     /// </summary>
     void Move()
     {
+        //if the scene is currently main the island will move top to bottom
         if (SceneManager.GetActiveScene().name == "Main")
         {
             Vector2 newPosition = new Vector2(0.0f, verticalSpeed);
@@ -41,7 +43,7 @@ public class IslandController : MonoBehaviour
             currentPosition -= newPosition;
             transform.position = currentPosition;
         }
-
+        //if the scene is currently level2 the island will move from right to left
         else if (SceneManager.GetActiveScene().name == "Level2")
         {
             Vector2 newPosition = new Vector2(verticalSpeed, 0.0f);
@@ -58,12 +60,16 @@ public class IslandController : MonoBehaviour
     /// </summary>
     void Reset()
     {
+        //checks if island is out of boundary and will reset the island to a new place
+        //this one checks if on the main level
         if (SceneManager.GetActiveScene().name == "Main")
         {
             float randomXPosition = Random.Range(boundary.Left, boundary.Right);
             transform.position = new Vector2(randomXPosition, boundary.Top);
 
         }
+
+        //this one checks if on the level2
         else if (SceneManager.GetActiveScene().name == "Level2")
         {
             float randomYPosition = Random.Range(boundary.Top, boundary.Bottom);
@@ -80,7 +86,7 @@ public class IslandController : MonoBehaviour
     /// </summary>
     void CheckBounds()
     {
-
+        //
         if (SceneManager.GetActiveScene().name == "Main")
         {
             if (transform.position.y <= boundary.Bottom)

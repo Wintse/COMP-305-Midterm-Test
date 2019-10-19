@@ -5,10 +5,8 @@ using Util;
 /// <summary>
 /// Victoria Liu
 /// midterm test
-/// 
+/// the player controller
 /// </summary>
-
-
 public class PlayerController : MonoBehaviour
 {
     public Speed speed;

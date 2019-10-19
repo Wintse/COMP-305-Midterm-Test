@@ -811,8 +811,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   horizontalSpeed: 0.04
-  resetPosition: 9
-  resetPoint: -19.93
+  resetPosition: 9.6
+  resetPoint: -19.2
 --- !u!1001 &1781899050
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -911,5 +911,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   horizontalSpeed: 0.04
-  resetPosition: 9
-  resetPoint: -19.93
+  resetPosition: 9.6
+  resetPoint: -19.2

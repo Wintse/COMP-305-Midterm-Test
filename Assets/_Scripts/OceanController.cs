@@ -4,7 +4,7 @@ using UnityEngine;
 /// <summary>
 /// Victoria Liu
 /// midterm test
-/// 
+/// took the basic code of oceancontroller2
 /// </summary>
 public class OceanController : MonoBehaviour
 {

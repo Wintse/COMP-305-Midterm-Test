@@ -6,8 +6,8 @@ using UnityEngine.SceneManagement;
 /// <summary>
 /// Victoria Liu
 /// midterm test
-/// manages UI
-/// 
+/// manages UI and scenes
+/// scoreboard was added and the ability to switch to level2
 /// </summary>
 public class GameController : MonoBehaviour
 {
@@ -33,6 +33,7 @@ public class GameController : MonoBehaviour
     public Text highScoreLabel;
 
     //game objects
+    //now is scoreboard
     public GameObject scoreBoard;
 
     [Header("UI Control")]
@@ -53,13 +54,16 @@ public class GameController : MonoBehaviour
         {
             _lives = value;
 
-
+            //updates the lives in ScoreBoard equal to _lives
             scoreBoard.GetComponent<ScoreBoard>().lives = _lives;
 
             if (_lives < 1)
             {
                 
                 SceneManager.LoadScene("End");
+                //resets the lives and score
+                scoreBoard.GetComponent<ScoreBoard>().lives = 5;
+                scoreBoard.GetComponent<ScoreBoard>().score = 0;
             }
             else
             {
@@ -80,12 +84,23 @@ public class GameController : MonoBehaviour
         {
             _score = value;
 
+            //updates the score in ScoreBoard equal to _score
             scoreBoard.GetComponent<ScoreBoard>().score = _score;
 
             if (scoreBoard.GetComponent<ScoreBoard>().highscore < _score)
             {
                 scoreBoard.GetComponent<ScoreBoard>().highscore = _score;
             }
+            //checks if the score is 500 and if on the main scene to see when to change scenes
+            if(SceneManager.GetActiveScene().name == "Main")
+            {
+                if (_score == 500)//if score is 500 it will change scenes
+                {
+                    SceneManager.LoadScene("Level2");
+                    Debug.Log("Help");
+                }
+            }
+           
             scoreLabel.text = "Score: " + _score.ToString();
         }
     }
@@ -101,6 +116,7 @@ public class GameController : MonoBehaviour
 
     private void GameObjectInitialization()
     {
+        //scoreboard is being found
         scoreBoard = GameObject.Find("ScoreBoard");
         startLabel = GameObject.Find("StartLabel");
         endLabel = GameObject.Find("EndLabel");
@@ -130,6 +146,7 @@ public class GameController : MonoBehaviour
                 restartButton.SetActive(false);
                 activeSoundClip = SoundClip.ENGINE;
                 break;
+            //level2, is the same as main 
             case "Level2":
                 highScoreLabel.enabled = false;
                 startLabel.SetActive(false);
@@ -150,6 +167,7 @@ public class GameController : MonoBehaviour
 
         //Lives = 5;
         // Score = 0;
+        ///instead the Lives and Score are equal to the ScoreBoard so it keeps the score
         Lives = scoreBoard.GetComponent<ScoreBoard>().lives;
         Score = scoreBoard.GetComponent<ScoreBoard>().score;
 
@@ -178,14 +196,6 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (SceneManager.GetActiveScene().name == "Main")
-        {
-            if (_score == 500)
-            {
-                
-                SceneManager.LoadScene("Level2");
-            }
-        }
         
     }
 
