@@ -3,7 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-
+/// <summary>
+/// Victoria Liu
+/// midterm test
+/// 
+/// </summary>
 public class GameController : MonoBehaviour
 {
     [Header("Scene Game Objects")]
@@ -27,6 +31,9 @@ public class GameController : MonoBehaviour
     public Text scoreLabel;
     public Text highScoreLabel;
 
+    //game objects
+    //public GameObject lives_;
+    //public GameObject scores_;
     public GameObject highScore;
 
     [Header("UI Control")]
@@ -83,6 +90,8 @@ public class GameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //_lives = lives.GetComponent<Score>().score;
+        //_score = scores.score;
         GameObjectInitialization();
         SceneConfiguration();
     }
@@ -112,6 +121,14 @@ public class GameController : MonoBehaviour
                 activeSoundClip = SoundClip.NONE;
                 break;
             case "Main":
+                highScoreLabel.enabled = false;
+                startLabel.SetActive(false);
+                startButton.SetActive(false);
+                endLabel.SetActive(false);
+                restartButton.SetActive(false);
+                activeSoundClip = SoundClip.ENGINE;
+                break;
+            case "Level2":
                 highScoreLabel.enabled = false;
                 startLabel.SetActive(false);
                 startButton.SetActive(false);
@@ -158,7 +175,11 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (_score == 500)
+        {
+            //DontDestoryOnLoad(_score, _lives);
+            SceneManager.LoadScene("Level2");
+        }
     }
 
     // Event Handlers

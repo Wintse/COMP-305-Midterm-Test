@@ -4,12 +4,9 @@ using UnityEngine;
 using Util;
 /// <summary>
 /// Victoria Liu
-/// midterm test
-/// 
+/// midterm
 /// </summary>
-
-
-public class PlayerController : MonoBehaviour
+public class PlayerController2 : MonoBehaviour
 {
     public Speed speed;
     public Boundary boundary;
@@ -19,6 +16,7 @@ public class PlayerController : MonoBehaviour
     // private instance variables
     private AudioSource _thunderSound;
     private AudioSource _yaySound;
+
 
     // Start is called before the first frame update
     void Start()
@@ -31,49 +29,47 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         Move();
-        CheckBounds();
     }
 
-    //level1
+
     public void Move()
     {
-    Vector2 newPosition = transform.position;
+        Vector2 newPosition = transform.position;
 
-        if(Input.GetAxis("Horizontal") > 0.0f)
+        if (Input.GetAxis("Vertical") > 0.0f)
         {
-            newPosition += new Vector2(speed.max, 0.0f);
+            newPosition += new Vector2(0.0f, speed.max);
         }
 
-        if (Input.GetAxis("Horizontal") < 0.0f)
+        if (Input.GetAxis("Vertical") < 0.0f)
         {
-            newPosition += new Vector2(speed.min, 0.0f);
+            newPosition += new Vector2(0.0f, speed.min);
         }
 
         transform.position = newPosition;
     }
-    
-
 
     public void CheckBounds()
     {
         // check right boundary
-        if(transform.position.x > boundary.Right)
+        if (transform.position.y > boundary.Top)
         {
-            transform.position = new Vector2(boundary.Right, transform.position.y);
+            transform.position = new Vector2(transform.position.y,boundary.Top);
         }
 
         // check left boundary
-        if (transform.position.x < boundary.Left)
+        if (transform.position.y < boundary.Bottom)
         {
-            transform.position = new Vector2(boundary.Left, transform.position.y);
+            transform.position = new Vector2(transform.position.y, boundary.Bottom);
         }
-        
+
 
     }
 
+
     void OnTriggerEnter2D(Collider2D other)
     {
-        switch(other.gameObject.tag)
+        switch (other.gameObject.tag)
         {
             case "Cloud":
                 _thunderSound.Play();
