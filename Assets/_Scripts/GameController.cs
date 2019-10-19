@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 /// <summary>
 /// Victoria Liu
 /// midterm test
+/// manages UI
 /// 
 /// </summary>
 public class GameController : MonoBehaviour
@@ -45,14 +46,17 @@ public class GameController : MonoBehaviour
     {
         get
         {
-            //return _lives;
             return _lives;
         }
 
         set
         {
             _lives = value;
-            if(_lives < 1)
+
+
+            scoreBoard.GetComponent<ScoreBoard>().lives = _lives;
+
+            if (_lives < 1)
             {
                 
                 SceneManager.LoadScene("End");
@@ -76,7 +80,7 @@ public class GameController : MonoBehaviour
         {
             _score = value;
 
-            
+            scoreBoard.GetComponent<ScoreBoard>().score = _score;
 
             if (scoreBoard.GetComponent<ScoreBoard>().highscore < _score)
             {
@@ -92,8 +96,7 @@ public class GameController : MonoBehaviour
         
         GameObjectInitialization();
         SceneConfiguration();
-        _lives = scoreBoard.GetComponent<ScoreBoard>().lives; ;
-        _score = scoreBoard.GetComponent<ScoreBoard>().score; ;
+        
     }
 
     private void GameObjectInitialization()
@@ -141,13 +144,14 @@ public class GameController : MonoBehaviour
                 startLabel.SetActive(false);
                 startButton.SetActive(false);
                 activeSoundClip = SoundClip.NONE;
-                highScoreLabel.text = "High Score: " + scoreBoard.GetComponent<ScoreBoard>().score;
+                highScoreLabel.text = "High Score: " + scoreBoard.GetComponent<ScoreBoard>().highscore;
                 break;
         }
 
-        Lives = 5;
-        Score = 0;
-
+        //Lives = 5;
+        // Score = 0;
+        Lives = scoreBoard.GetComponent<ScoreBoard>().lives;
+        Score = scoreBoard.GetComponent<ScoreBoard>().score;
 
         if ((activeSoundClip != SoundClip.NONE) && (activeSoundClip != SoundClip.NUM_OF_CLIPS))
         {
@@ -174,10 +178,15 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (_score == 500)
+        if (SceneManager.GetActiveScene().name == "Main")
         {
-            SceneManager.LoadScene("Level2");
+            if (_score == 500)
+            {
+                
+                SceneManager.LoadScene("Level2");
+            }
         }
+        
     }
 
     // Event Handlers

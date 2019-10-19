@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 /// <summary>
 /// Victoria Liu 
 /// midterm
+/// controls movement of clouds
+/// now check which scene the game is in so it determine which way the clouds should come from
 /// </summary>
 
 public class CloudController : MonoBehaviour
@@ -57,7 +59,7 @@ public class CloudController : MonoBehaviour
     /// </summary>
     void Reset()
     {
-        //level1/main
+        //level1/main the same as before
         if (SceneManager.GetActiveScene().name == "Main")
         {
             horizontalSpeed = Random.Range(horizontalSpeedRange.min, horizontalSpeedRange.max);
@@ -86,6 +88,7 @@ public class CloudController : MonoBehaviour
     /// <summary>
     /// This method checks if the ocean reaches the lower boundary
     /// and then it Resets it
+    /// depending on the level it will reset to the top or right
     /// </summary>
     void CheckBounds()
     {
