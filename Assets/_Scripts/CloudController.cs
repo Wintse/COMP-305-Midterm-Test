@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Util;
+using UnityEngine.SceneManagement;
+/// <summary>
+/// Victoria Liu 
+/// midterm
+/// </summary>
 
 public class CloudController : MonoBehaviour
 {
@@ -36,23 +41,46 @@ public class CloudController : MonoBehaviour
     /// </summary>
     void Move()
     {
-        Vector2 newPosition = new Vector2(horizontalSpeed, verticalSpeed);
-        Vector2 currentPosition = transform.position;
+        
+            Vector2 newPosition = new Vector2(horizontalSpeed, verticalSpeed);
+            Vector2 currentPosition = transform.position;
 
-        currentPosition -= newPosition;
-        transform.position = currentPosition;
+            currentPosition -= newPosition;
+            transform.position = currentPosition;
+        
     }
 
     /// <summary>
     /// This method resets the ocean to the resetPosition
+    /// the reset position will be different depending on which scene
+    /// will check which scene the game is currently on and will then decide what to do
     /// </summary>
     void Reset()
     {
-        horizontalSpeed = Random.Range(horizontalSpeedRange.min, horizontalSpeedRange.max);
-        verticalSpeed = Random.Range(verticalSpeedRange.min, verticalSpeedRange.max);
+        //level1/main
+        if (SceneManager.GetActiveScene().name == "Main")
+        {
+            horizontalSpeed = Random.Range(horizontalSpeedRange.min, horizontalSpeedRange.max);
+            verticalSpeed = Random.Range(verticalSpeedRange.min, verticalSpeedRange.max);
 
-        float randomXPosition = Random.Range(boundary.Left, boundary.Right);
-        transform.position = new Vector2(randomXPosition, Random.Range(boundary.Top, boundary.Top + 2.0f));
+            float randomXPosition = Random.Range(boundary.Left, boundary.Right);
+            transform.position = new Vector2(randomXPosition, Random.Range(boundary.Top, boundary.Top + 2.0f));
+        }
+        //level2 
+        else if (SceneManager.GetActiveScene().name == "Level2") 
+        {
+            //will swap the horizontal and vertical speeds so they have each other's values or else the vertical will be too fast
+            //horizontalSpeed = Random.Range(verticalSpeedRange.min, verticalSpeedRange.max);
+            //verticalSpeed = Random.Range(horizontalSpeedRange.min, horizontalSpeedRange.max);
+
+            horizontalSpeed = Random.Range(verticalSpeedRange.min, verticalSpeedRange.max);
+            verticalSpeed = Random.Range(horizontalSpeedRange.min, horizontalSpeedRange.max);
+
+            float randomYPosition = Random.Range(boundary.Top, boundary.Bottom);
+            transform.position = new Vector2(Random.Range(boundary.Right, boundary.Right + 2.0f), randomYPosition);
+        }
+
+            
     }
 
     /// <summary>
@@ -61,9 +89,19 @@ public class CloudController : MonoBehaviour
     /// </summary>
     void CheckBounds()
     {
-        if (transform.position.y <= boundary.Bottom)
+        if (SceneManager.GetActiveScene().name == "Main")
         {
-            Reset();
+            if (transform.position.y <= boundary.Bottom)
+            {
+                Reset();
+            }
+        }
+        else if (SceneManager.GetActiveScene().name == "Level2")
+        {
+            if (transform.position.x <= boundary.Left)
+            {
+                Reset();
+            }
         }
     }
 }

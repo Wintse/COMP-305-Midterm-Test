@@ -103,7 +103,7 @@ MonoBehaviour:
   verticalSpeed: 0
   horizontalSpeed: 0
   boundary:
-    Top: 3.28
+    Top: 2.28
     Right: 2.063
     Bottom: -3.28
     Left: -2.063

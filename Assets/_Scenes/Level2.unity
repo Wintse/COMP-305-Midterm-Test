@@ -454,12 +454,12 @@ PrefabInstance:
     - target: {fileID: 1611093553563445763, guid: 887c5bee811983a4cb06f9ea66643b36,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.45
+      value: -1.27
       objectReference: {fileID: 0}
     - target: {fileID: 1611093553563445763, guid: 887c5bee811983a4cb06f9ea66643b36,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.06
+      value: 0.04
       objectReference: {fileID: 0}
     - target: {fileID: 1611093553563445763, guid: 887c5bee811983a4cb06f9ea66643b36,
         type: 3}
@@ -587,9 +587,9 @@ MonoBehaviour:
     min: -0.04
     max: 0.04
   boundary:
-    Top: 2.11
+    Top: 2.9
     Right: 0
-    Bottom: -2.11
+    Bottom: -2.9
     Left: 0
   gameController: {fileID: 1657820754}
 --- !u!1001 &1657820753
@@ -810,7 +810,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e897ba37cf2c8d741bce375a78fcde68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  horizontalSpeed: 0.1
+  horizontalSpeed: 0.04
   resetPosition: 5
   resetPoint: -9.93
 --- !u!1001 &1781899050
@@ -910,6 +910,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e897ba37cf2c8d741bce375a78fcde68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  horizontalSpeed: 0.1
+  horizontalSpeed: 0.04
   resetPosition: 5
   resetPoint: -9.93

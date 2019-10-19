@@ -29,6 +29,7 @@ public class PlayerController2 : MonoBehaviour
     void Update()
     {
         Move();
+        CheckBounds();
     }
 
 
@@ -51,16 +52,16 @@ public class PlayerController2 : MonoBehaviour
 
     public void CheckBounds()
     {
-        // check right boundary
+        // check top boundary
         if (transform.position.y > boundary.Top)
         {
-            transform.position = new Vector2(transform.position.y,boundary.Top);
+            transform.position = new Vector2(transform.position.x, boundary.Top);
         }
 
-        // check left boundary
+        // check down boundary
         if (transform.position.y < boundary.Bottom)
         {
-            transform.position = new Vector2(transform.position.y, boundary.Bottom);
+            transform.position = new Vector2(transform.position.x, boundary.Bottom);
         }
 
 
